@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmd2nexgg62n2"]
+
+[ext_resource type="PackedScene" uid="uid://bgo5a0pntpdl8" path="res://Scenes/Geral/player.tscn" id="1_reur1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wfl2x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_42cgm"]
+sky_material = SubResource("ProceduralSkyMaterial_wfl2x")
+
+[sub_resource type="Environment" id="Environment_s3n3c"]
+background_mode = 2
+sky = SubResource("Sky_42cgm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4hbop"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2yayt"]
+data = PackedVector3Array(-5, 0.25, 5, 5, 0.25, 5, -5, -0.25, 5, 5, 0.25, 5, 5, -0.25, 5, -5, -0.25, 5, 5, 0.25, -5, -5, 0.25, -5, 5, -0.25, -5, -5, 0.25, -5, -5, -0.25, -5, 5, -0.25, -5, 5, 0.25, 5, 5, 0.25, -5, 5, -0.25, 5, 5, 0.25, -5, 5, -0.25, -5, 5, -0.25, 5, -5, 0.25, -5, -5, 0.25, 5, -5, -0.25, -5, -5, 0.25, 5, -5, -0.25, 5, -5, -0.25, -5, 5, 0.25, 5, -5, 0.25, 5, 5, 0.25, -5, -5, 0.25, 5, -5, 0.25, -5, 5, 0.25, -5, -5, -0.25, 5, 5, -0.25, 5, -5, -0.25, -5, 5, -0.25, 5, 5, -0.25, -5, -5, -0.25, -5)
+
+[node name="DoSoquinho" type="Node3D"]
+
+[node name="Env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_s3n3c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, -0.250002, 0.808011, 0.533496, -0.433016, 0.39952, -0.808011, 0, 4, 0)
+shadow_enabled = true
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="meshFloor" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_4hbop")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor/meshFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/meshFloor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_2yayt")
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.589338, 0.807887, 0, -0.807887, 0.589338, 0, 7.29151, 6.50008)
+
+[node name="Player" parent="." instance=ExtResource("1_reur1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.339943, 0)
+id = 1
+
+[node name="Player2" parent="." instance=ExtResource("1_reur1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78868, 0.25, -1.22083)
+
+[node name="Player3" parent="." instance=ExtResource("1_reur1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14171, 0.25, -1.36879)
+
+[node name="Player4" parent="." instance=ExtResource("1_reur1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50005, 0.25, -1.80687)
+
+[node name="Player5" parent="." instance=ExtResource("1_reur1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.955831, 0.25, -2.01531)
+
+[node name="Player6" parent="." instance=ExtResource("1_reur1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5803, 0.25, -2.47392)
